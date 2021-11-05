@@ -2,8 +2,13 @@ name: Staging deployment
 
 on: 
   pull_request:
-    types: [labeled]
-    
+    types: [labeled]    
+env:
+  DOCKER_IMAGE_NAME: NerdTiger-azure-ttt
+  IMAGE-REGISTRY-URK: docker.pkg.github.com
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    if: contains(github.event.pull_request.labels.*.name,'stage')
